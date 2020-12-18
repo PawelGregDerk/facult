@@ -1,0 +1,48 @@
+button {
+    padding: 10px;
+}
+
+span {
+    color: red;
+    font-style: italic;
+}
+
+form {
+    display: table;
+}
+
+form div {
+    display: table-row;
+}
+
+label, input, span, select {
+    display: table-cell;
+    margin: 5px;
+    text-align: left;
+}
+
+input[type=text], input[type=password], select, textarea {
+    width: 200px;
+    margin: 5px;
+}
+
+form div div {
+    display: table-cell;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: gray;
+    color: white;
+    border-radius: 2px;
+}

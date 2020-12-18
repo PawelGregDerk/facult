@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment(pageTitle, links)">
+    <title th:replace="${pageTitle}"></title>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <th:block th:replace="${links}" />
+    <meta charset="UTF-8">
+</head>
+<body>
+<table border="0" width="120px" th:fragment="languague"
+       th:with="currentUrl=(${#httpServletRequest.requestURI})">
+    <caption style="font-size: small; text-align:left" th:text="#{lang.change}"></caption>
+    <tr>
+        <td>
+            <a th:href="@{${currentUrl}(lang=en)}">
+                <img th:src="@{/img/flagUK.gif}" width="15px" height="15px"
+                     th:alt="english">
+            </a>
+        </td>
+        <td>
+            <a th:href="@{${currentUrl}(lang=ru)}">
+                <img th:src="@{/img/flagRu.gif}" width="15px" height="15px"
+                     th:alt="русский">
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

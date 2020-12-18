@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerFragment(~{::title}, ~{})">
+    <title th:text="#{curse.add}"></title>
+</head>
+<body>
+<h3 th:text="#{curse.create}"></h3>
+<form th:action="@{/saveCurse}" method="post">
+    <div th:if="${msg == 'ok'}">
+        [[#{curse.added}]]
+    </div>
+    <div th:if="${msg == 'wrong'}">
+        [[#{curse.not.added}]]
+    </div>
+    <div th:if="${msg == 'empty'}">
+        [[#{curse.not.valid}]]
+    </div>
+    <input style="width:500px;" type="text" name="curseName"/>
+    <br>
+    <div th:unless="${curses.isEmpty()}">
+        <p th:text="#{curse.select}"></p>
+        <select style="width:500px;" name="curse" size="10">
+            <option th:each="curse : ${curses}" th:value="${curse.curseName}"
+                    th:text="${curse.curseName}">
+            </option>
+        </select>
+    </div>
+    <input type="submit" th:value="#{input}">
+</form>
+<a th:text="#{back}" th:href="@{/cabinet}"></a>
+</body>
+</html>

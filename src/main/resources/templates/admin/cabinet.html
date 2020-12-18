@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments/header :: headerFragment(~{::title}, ~{})">
+    <title th:text="#{user.cab}"></title>
+</head>
+<body>
+<h2 th:text="#{greeting(${user.name})}"></h2>
+<div th:if="${success}">
+    [[#{edit.success}]]
+</div>
+<img align="left" width="250" height="300" th:src="'data:image/jpeg;base64,' + ${photo}" />
+<p><a th:text="#{user.edit}" th:href="@{/editUser}"></a></p>
+<p><a th:text="#{users.list}" th:href="@{/showAllUsers}"></a></p>
+<p><a th:text="#{curse.add}" th:href="@{/addCurse}"></a></p>
+<p><a th:text="#{curse.show}" th:href="@{/showUserCurses}"></a></p>
+<div th:insert="fragments/footer.html :: footer"></div>
+</body>
+</html>

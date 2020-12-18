@@ -1,0 +1,54 @@
+#-------------------------------- for customise error pages
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+#  profiles:
+#    active: "prod"
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+#-----------------------------------------------
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/doc_1
+    username: adm
+    password: adm
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
+      jdbc:
+        lob:
+          non-contextual-creation: true
+    show-sql: false
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #  open-in-view: false
+    generate-ddl: true
+    # fou LAZY initialisation
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+  # default size for spring boot is 10 MB
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+max-size: 5000000
+max-files-size: 10000000
+
+posts: docent, professor, lecturer, seniorLecturer
+
+path:
+  to:
+    imgs: d:\\tmp\\Sources\\photos\\
+    files: d:\\tmp\\Sources\\files\\

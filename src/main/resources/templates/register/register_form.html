@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerFragment(~{::title}, ~{})">
+    <title th:text="#{user.reg}"></title>
+</head>
+<body>
+<div align="center">
+    <h1 th:text="#{user.reg}"></h1>
+    <form th:action="@{/register}" method="post" th:object="${userDTO}">
+        <div>
+            <label th:text="#{user.name} + ':'"></label>
+            <input type="text" th:field="*{name}"/><br/>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+
+        <div>
+            <label>E-mail:</label>
+            <input type="text" id="email" th:field="*{email}" onblur="checkIfFree();"/>
+            <span id="msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <span id="err">[[#{uniqueLogin.message}]]</span>
+            <span id="suc" style="color: green">[[#{email.not.exists}]]</span>
+        </div>
+
+        <div>
+            <label th:text="#{user.pas} + ':'"></label>
+            <input type="password" th:field="*{password}"/>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>
+
+        <div>
+            <label th:text="#{user.pas.confirm} + ':'"></label>
+            <input type="password" th:field="*{confirmPassword}"/>
+            <span th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></span>
+        </div>
+
+        <div>
+            <label th:text="#{user.post} + ':'"></label>
+            <select th:field="*{post}">
+                <option th:value="''" th:text="#{post.select}"></option>
+                <option th:each="post : ${posts}" th:value="${post}" th:text="#{${post}}">
+                </option>
+            </select>
+            <span th:if="${#fields.hasErrors('post')}" th:errors="*{post}"></span>
+        </div>
+
+        <div>
+            <label th:text="#{user.exp} + ':'"></label>
+            <input type="date" th:field="*{experience}"/>
+            <span th:if="${#fields.hasErrors('experience')}" th:errors="*{experience}"></span>
+        </div>
+
+        <div>
+            <label th:text="#{user.rate} + '?'"></label>
+            <input type="checkbox" th:field="*{rate}"/>
+            <span th:if="${#fields.hasErrors('rate')}" th:errors="*{rate}"></span>
+        </div>
+
+        <div>
+            <label th:text="#{user.role} + ':'"></label>
+            <ul>
+                <li th:each="role : ${roles}">
+                    <table border="0">
+                        <tr>
+                            <td><label th:text="#{${role.toString()}}"></label></td>
+                            <td><input type="checkbox" name="roles" th:value="${role}"/></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+        </div>
+
+        <div>
+            <div></div>
+            <div>
+                <button type="submit" th:text="#{register}"></button>
+            </div>
+            <div></div>
+        </div>
+    </form>
+</div>
+<a th:text="#{back}" th:href="@{/}"></a>
+</body>
+</html>

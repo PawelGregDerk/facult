@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerFragment(~{::title}, ~{})">
+    <title th:text="#{user.reg.succ}"></title>
+    <style type="text/css">
+		b {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h2 align="center"><input type=text id="greet" style="border:none;
+                                     width:auto; text-align:center";>
+    </h2><br>
+    <b th:text="#{user.name} + ':'"></b>&nbsp;<b th:text="${user.name}"></b><br/>
+    <b>E-mail:</b>&nbsp;<b th:text="${user.email}"></b><br/>
+</div>
+<a th:text="#{back}" th:href="@{/}"></a>
+<script type="text/javascript">
+    let line = "[[#{greeting(${user.name})}]]";
+    anime(150, line, 'greet');
+</script>
+</body>
+</html>

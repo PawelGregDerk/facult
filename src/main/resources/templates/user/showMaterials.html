@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="fragments/header :: headerFragment(~{::title}, ~{::script})">
+    <title th:text="#{users.list}"></title>
+    <script type="text/javascript" th:src="@{/js/lib/jquery.tablesort.js}"></script>
+</head>
+<body>
+<h2 th:text="${curseDTO.curseName}"></h2>
+<div th:if="${curseDTO.materials.isEmpty()}">
+    [[#{no.materials}]]
+</div>
+<div th:if="${success}">
+    [[#{edit.success}]]
+</div>
+<div th:unless="${curseDTO.materials.isEmpty()}">
+    <table class="table">
+        <thead>
+        <tr>
+            <th th:text="#{mat.link}"></th>
+            <th th:text="#{posting.date}"></th>
+            <th th:text="#{user.del}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mat : ${materialDTOS}">
+            <td><a th:href="@{|/download?id=${mat.id}|}" th:text="${mat.name}"></a></td>
+            <td th:text="${#temporals.format(mat.loadDate, 'dd MMM yyyy')}"></td>
+            <td>
+                <button type="button" class="btn btn-outline-light text-dark"
+                        data-toggle="modal" th:text="#{user.del}"
+                        th:attr="data-target='#recordDeleteModal'+${mat.id}">
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" th:attr="id='recordDeleteModal'+${mat.id}"
+                     tabindex="-1" role="dialog"
+                     aria-labelledby="recordDeleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 th:text="#{user.del}" class="modal-title"
+                                    id="recordDeleteModalLabel">
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div th:text="#{del.shure} + '?'" class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal" th:text="#{no}"></button>
+                                <a th:href="@{/deleteMaterial/{id}(id=${mat.id})}"
+                                   class="btn btn-primary" th:text="#{yes}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${materialDTOS.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/showUserMaterial(page = ${pageNumber}, cId = ${curseDTO.id})}"
+           th:text="${pageNumber}"
+           th:class="${pageNumber == materialDTOS.number + 1} ? active">
+        </a>
+    </div>
+</div>
+<a th:text="#{back}" th:href="@{/showUserCurses}"></a>
+</body>
+</html>
