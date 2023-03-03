@@ -18,13 +18,13 @@ import study.spring.valid.user.ConfirmPassword;
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor(onConstructor = @__(@NonNull))
+@RequiredArgsConstructor(onConstructor_ = {@NonNull})
 @ConfirmPassword
 public class UserDTO {
     private Integer id;
     @NonNull
     @NotBlank(message = "{not.empty}")
-    @Pattern(regexp = "^[^\\s][a-zA-Zа-ёА-ЯЁ_\\s]+[^\\s]+$", message = "{name.error}")
+    @Pattern(regexp = "^\\S[a-zA-Zа-ёА-ЯЁ_\\s]+\\S+$", message = "{name.error}")
     @Size(min = 3, max = 50, message = "{user.size}")
     private String name;
     @NonNull

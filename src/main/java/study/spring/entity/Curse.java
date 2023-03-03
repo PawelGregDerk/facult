@@ -15,7 +15,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @AttributeOverride(name = "id", column = @Column(name = "curs_id"))
 @NoArgsConstructor
-@RequiredArgsConstructor(onConstructor = @__( @NonNull))
+@RequiredArgsConstructor(onConstructor_ = {@NonNull})
 @ToString(callSuper = true, exclude = {"users", "materials"})
 public class Curse extends PersistentEntity implements Serializable {
     private static final long serialVersionUID = 2L;

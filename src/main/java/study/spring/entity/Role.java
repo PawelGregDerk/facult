@@ -10,7 +10,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor(onConstructor = @__( @NonNull))
+@RequiredArgsConstructor(onConstructor_ = {@NonNull})
 public class Role extends PersistentEntity implements Serializable {
     private static final long serialVersionUID = 6146467702864087733L;
     @NonNull

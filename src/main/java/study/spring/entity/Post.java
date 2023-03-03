@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "posts")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor(onConstructor = @__( @NonNull))
+@RequiredArgsConstructor(onConstructor_= {@NonNull})
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString(callSuper = true, exclude = "users")
 @AttributeOverride(name = "id", column = @Column(name = "post_id"))
